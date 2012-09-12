@@ -18,4 +18,12 @@ public class Category {
 		this.name = name;
 	}
 
+	public ArrayList<SubCategory> getSubCategories() {
+		return subCategories;
+	}
+
+	public void setSubCategories(ArrayList<SubCategory> subCategories) {
+		this.subCategories = subCategories;
+	}
+
 }

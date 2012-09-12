@@ -101,4 +101,12 @@ public class Auction {
 		this.buyoutPrize = buyoutPrize;
 	}
 
+	public ArrayList<Bid> getBids() {
+		return bids;
+	}
+
+	public void setBids(ArrayList<Bid> bids) {
+		this.bids = bids;
+	}
+
 }

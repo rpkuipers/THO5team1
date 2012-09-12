@@ -12,6 +12,7 @@ public class User {
 	private String password;
 	private int credits;
 	private int tempCredits;
+	private int userRole;
 	private ArrayList<Bid> userBids = new ArrayList<Bid>();
 	private ArrayList<Auction> userAuctions = new ArrayList<Auction>();
 
@@ -115,6 +116,14 @@ public class User {
 
 	public void setUserAuctions(ArrayList<Auction> userAuctions) {
 		this.userAuctions = userAuctions;
+	}
+
+	public int getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(int userRole) {
+		this.userRole = userRole;
 	}
 
 }
