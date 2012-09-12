@@ -1,13 +1,41 @@
 package auctionDomain;
 
+import java.util.ArrayList;
+
 public class User {
 	private int id;
 	private String name;
-	private String Address;
+	private String address;
 	private String email;
 	private String phoneNumber;
 	private String username;
 	private String password;
+	private int credits;
+	private int tempCredits;
+	private ArrayList<Bid> userBids = new ArrayList<Bid>();
+	private ArrayList<Auction> userAuctions = new ArrayList<Auction>();
+
+	public User(int id, String name, String address, String email,
+			String phoneNumber, String username, String password, int credits,
+			int tempCredits) {
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.username = username;
+		this.password = password;
+		this.credits = credits;
+		this.tempCredits = tempCredits;
+	}
+
+	public ArrayList<Bid> getUserBids() {
+		return userBids;
+	}
+
+	public void setUserBids(ArrayList<Bid> userBids) {
+		this.userBids = userBids;
+	}
 
 	public int getId() {
 		return id;
@@ -26,11 +54,11 @@ public class User {
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		address = address;
 	}
 
 	public String getEmail() {
@@ -63,6 +91,30 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getTempCredits() {
+		return tempCredits;
+	}
+
+	public void setTempCredits(int tempCredits) {
+		this.tempCredits = tempCredits;
+	}
+
+	public int getCredits() {
+		return credits;
+	}
+
+	public void setCredits(int credits) {
+		this.credits = credits;
+	}
+
+	public ArrayList<Auction> getUserAuctions() {
+		return userAuctions;
+	}
+
+	public void setUserAuctions(ArrayList<Auction> userAuctions) {
+		this.userAuctions = userAuctions;
 	}
 
 }

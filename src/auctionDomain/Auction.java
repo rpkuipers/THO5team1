@@ -1,5 +1,6 @@
 package auctionDomain;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Auction {
@@ -7,9 +8,26 @@ public class Auction {
 	private String title;
 	private String productName;
 	private String description;
+	private double startPrize;
+	private double buyoutPrize;
 	private Date entryDate;
 	private Date startDate;
 	private Date endDate;
+	private ArrayList<Bid> bids = new ArrayList<Bid>();
+
+	public Auction(int id, String title, String productName,
+			String description, double startPrize, double buyoutPrize,
+			Date entryDate, Date startDate, Date endDate) {
+		this.id = id;
+		this.title = title;
+		this.productName = productName;
+		this.description = description;
+		this.startPrize = startPrize;
+		this.buyoutPrize = buyoutPrize;
+		this.entryDate = entryDate;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
 
 	public int getId() {
 		return id;
@@ -65,6 +83,22 @@ public class Auction {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public double getStartPrize() {
+		return startPrize;
+	}
+
+	public void setStartPrize(double startPrize) {
+		this.startPrize = startPrize;
+	}
+
+	public double getBuyoutPrize() {
+		return buyoutPrize;
+	}
+
+	public void setBuyoutPrize(double buyoutPrize) {
+		this.buyoutPrize = buyoutPrize;
 	}
 
 }
