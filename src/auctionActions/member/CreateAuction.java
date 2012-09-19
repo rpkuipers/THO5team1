@@ -32,12 +32,29 @@ public class CreateAuction extends ActionSupport implements SessionAware {
 
 	public String execute() {
 		Date now = new Date();
-
+		Date validStartDate = makeValidDate(startdate);
+		Date validEndDate = makeValidDate(enddate);
+		
+		if(validStartDate != null && validEndDate != null){
+			if(!validStartDate.after(validEndDate)){
+				if(startprice < buyoutprice){
 		user = (User) session.get("user");
 		auction = new Auction(user.getId(), id, title, productname,
-				description, startprice, buyoutprice, now, makeValidDate(startdate), makeValidDate(enddate));
+				description, startprice, buyoutprice, now, validStartDate, validEndDate);
 		user.getUserAuctions().add(auction);
 		ias.addAuction(auction);
+				} else {
+					addFieldError("startprice","The startprice is larger then the buyout price");
+					return ERROR;
+				}
+			} else {
+				addFieldError("startdate","The startdate you entered is later then the entered enddate");
+				return ERROR;
+			}
+		} else {
+			addFieldError("startdate","The start and/or enddate do/does not follow the format");
+			return ERROR;
+		}
 
 		return SUCCESS;
 	}

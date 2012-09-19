@@ -55,6 +55,7 @@
 		
 		<action name="CreateAuction" class="auctionActions.member.CreateAuction">
 			<result name="success">/jsp/member/AuctionCreated.jsp</result>
+			<result name="error">/jsp/member/NewAuctionForm.jsp</result>
 			<result name="input">/jsp/member/NewAuctionForm.jsp</result>
 		</action>
 		
