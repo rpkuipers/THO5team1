@@ -1,5 +1,7 @@
 package auctionActions.member;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
@@ -23,17 +25,17 @@ public class CreateAuction extends ActionSupport implements SessionAware {
 	private int startprice;
 	private int buyoutprice;
 	private Date entrydate;
-	private Date startdate;
-	private Date enddate;
+	private String startdate;
+	private String enddate;
 	private User user;
 	private Map session;
 
 	public String execute() {
-		Date d = new Date();
+		Date now = new Date();
 
 		user = (User) session.get("user");
 		auction = new Auction(user.getId(), id, title, productname,
-				description, startprice, buyoutprice, d, startdate, enddate);
+				description, startprice, buyoutprice, now, makeValidDate(startdate), makeValidDate(enddate));
 		user.getUserAuctions().add(auction);
 		ias.addAuction(auction);
 
@@ -58,6 +60,7 @@ public class CreateAuction extends ActionSupport implements SessionAware {
 		if (startprice == 0) {
 			addFieldError("startprice", "Startprice is required.");
 		}
+		
 		if (buyoutprice == 0) {
 			addFieldError("buyoutprice", "buyoutprice is required.");
 		}
@@ -119,19 +122,19 @@ public class CreateAuction extends ActionSupport implements SessionAware {
 		this.entrydate = entrydate;
 	}
 
-	public Date getStartdate() {
+	public String getStartdate() {
 		return startdate;
 	}
 
-	public void setStartdate(Date startdate) {
+	public void setStartdate(String startdate) {
 		this.startdate = startdate;
 	}
 
-	public Date getEnddate() {
+	public String getEnddate() {
 		return enddate;
 	}
 
-	public void setEnddate(Date enddate) {
+	public void setEnddate(String enddate) {
 		this.enddate = enddate;
 	}
 
@@ -139,4 +142,28 @@ public class CreateAuction extends ActionSupport implements SessionAware {
 		this.session = session;
 
 	}
+	public static Date makeValidDate(String inDate) {
+	 	Date d;
+	    if (inDate == null)
+	      return null;
+
+	    //set the format to use as a constructor argument
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	    
+	    if (inDate.trim().length() != dateFormat.toPattern().length())
+	      return null;
+
+	    dateFormat.setLenient(false);
+	    
+	    try {
+	      //parse the inDate parameter
+	    	
+	      d = dateFormat.parse(inDate.trim());
+	      System.out.println(d);
+	    }
+	    catch (ParseException pe) {
+	      return null;
+	    }
+	    return d;
+	  }
 }

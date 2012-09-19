@@ -17,7 +17,8 @@
 			    <th>title</th>
 			    <th>name</th>
 			    <th>description</th>
-			    <th>entrydate</th>
+			    <th>startdate</th>
+			    <th>enddate</th>
 			    <th>startprice</th>
 			    <th>buyoutprice</th>
 			    
@@ -27,7 +28,8 @@
 				    <td><s:property value="title" />
 					<td><s:property value="productName" />
 		     		<td><s:property value="description" />
-		     		<td><s:property value="entryDate" />
+		     		<td><s:property value="startDate" />
+		     		<td><s:property value="endDate" />
 					<td><s:property value="startPrice" />
 		     		<td><s:property value="buyoutPrice" />
 		        </tr>

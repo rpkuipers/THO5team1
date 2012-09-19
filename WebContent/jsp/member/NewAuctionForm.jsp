@@ -16,7 +16,7 @@
     	  <s:textfield name="title" label="Title"/>
     	  <s:textfield name="productname" label="Product name"/>
     	  <s:textfield name="description" label="Description"/>
-    	  
+    	  <s:label label="please use the 12-12-2012 format"/>
     	  <s:textfield name="startdate" label="Start date"/>
     	  <s:textfield name="enddate" label="End date"/>
     	  <s:textfield name="startprice" label="Start price"/>
