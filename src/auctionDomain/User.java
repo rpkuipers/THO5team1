@@ -18,7 +18,7 @@ public class User {
 
 	public User(int id, String name, String address, String email,
 			String phoneNumber, String username, String password, int credits,
-			int tempCredits) {
+			int tempCredits, int userRole) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -28,6 +28,7 @@ public class User {
 		this.password = password;
 		this.credits = credits;
 		this.tempCredits = tempCredits;
+		this.userRole = userRole;
 	}
 
 	public ArrayList<Bid> getUserBids() {
@@ -59,7 +60,7 @@ public class User {
 	}
 
 	public void setAddress(String address) {
-		address = address;
+		this.address = address;
 	}
 
 	public String getEmail() {

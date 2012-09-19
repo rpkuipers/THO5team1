@@ -4,29 +4,39 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Auction {
+	private int userid;
 	private int id;
 	private String title;
 	private String productName;
 	private String description;
-	private double startPrize;
-	private double buyoutPrize;
+	private double startPrice;
+	private double buyoutPrice;
 	private Date entryDate;
 	private Date startDate;
 	private Date endDate;
 	private ArrayList<Bid> bids = new ArrayList<Bid>();
 
-	public Auction(int id, String title, String productName,
-			String description, double startPrize, double buyoutPrize,
+	public Auction(int userid, int id, String title, String productName,
+			String description, double startPrice, double buyoutPrice,
 			Date entryDate, Date startDate, Date endDate) {
+		this.userid = userid;
 		this.id = id;
 		this.title = title;
 		this.productName = productName;
 		this.description = description;
-		this.startPrize = startPrize;
-		this.buyoutPrize = buyoutPrize;
+		this.startPrice = startPrice;
+		this.buyoutPrice = buyoutPrice;
 		this.entryDate = entryDate;
 		this.startDate = startDate;
 		this.endDate = endDate;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
 	public int getId() {
@@ -85,20 +95,20 @@ public class Auction {
 		this.endDate = endDate;
 	}
 
-	public double getStartPrize() {
-		return startPrize;
+	public double getStartPrice() {
+		return startPrice;
 	}
 
-	public void setStartPrize(double startPrize) {
-		this.startPrize = startPrize;
+	public void setStartPrice(double startPrice) {
+		this.startPrice = startPrice;
 	}
 
-	public double getBuyoutPrize() {
-		return buyoutPrize;
+	public double getBuyoutPrice() {
+		return buyoutPrice;
 	}
 
-	public void setBuyoutPrize(double buyoutPrize) {
-		this.buyoutPrize = buyoutPrize;
+	public void setBuyoutPrice(double buyoutPrice) {
+		this.buyoutPrice = buyoutPrice;
 	}
 
 	public ArrayList<Bid> getBids() {
@@ -109,4 +119,7 @@ public class Auction {
 		this.bids = bids;
 	}
 
+	public String toString() {
+		return "Product with name: " + productName;
+	}
 }
