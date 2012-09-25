@@ -16,9 +16,9 @@ public class AuctionService implements IAuctionService, SessionAware {
 	private ArrayList<Auction> searchResult = new ArrayList<Auction>();
 	public Map session;
 	public AuctionService() {		
-		addUser(new User(1, "Pieter", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "Pietje92", "pieterpost92", 0, 0, 100));
-		addUser(new User(2, "Pietertje Post", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "PPost", "ww", 0, 0, 100));
-		addUser(new User(3, "admin", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "admin", "admin", 0, 0, 200));
+		addUser(new User(1, "Pieter", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "Pietje92", "pieterpost92", 0, 100));
+		addUser(new User(2, "Pietertje Post", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "PPost", "ww", 0, 100));
+		addUser(new User(3, "admin", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "admin", "admin", 0, 200));
 	}
 
 	public void addUser(User user) {

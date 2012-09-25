@@ -59,6 +59,15 @@
 			<result name="input">/jsp/member/NewAuctionForm.jsp</result>
 		</action>
 		
+		<action name="ChangeUserDataForm" class="auctionActions.member.ChangeUserDataForm">
+			<result name="success">/jsp/member/ChangeUserDataForm.jsp</result>
+		</action>
+		
+		<action name="ChangeUserData" class="auctionActions.member.ChangeUserData">
+			<result name="success">/jsp/menu/MemberMenu.jsp</result>
+			<result name="input">/jsp/member/ChangeUserDataForm.jsp</result>
+		</action>
+		
 		<action name="SearchAuction" class="auctionActions.member.SearchAuction">
 			<result name="success">/jsp/member/SearchAuctionResult.jsp</result>
 			<result name="input">/jsp/member/AuctionList.jsp</result>

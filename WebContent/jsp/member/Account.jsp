@@ -14,7 +14,8 @@
 			<p>Address: <s:property value="user.address" /></p>
 			<p>E-mail: <s:property value="user.email" /></p>
 			<p>Phonenumber: <s:property value="user.phoneNumber" /></p>
-		
+			
+		<a href=" <s:url action="ChangeUserDataForm" namespace="/member" /> ">Change account</a>
 		<a href=" <s:url action="MemberMenu" namespace="/member" /> ">Back to the menu.</a>
 	</body>
 </html>

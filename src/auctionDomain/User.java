@@ -17,8 +17,7 @@ public class User {
 	private ArrayList<Auction> userAuctions = new ArrayList<Auction>();
 
 	public User(int id, String name, String address, String email,
-			String phoneNumber, String username, String password, int credits,
-			int tempCredits, int userRole) {
+			String phoneNumber, String username, String password, int credits, int userRole) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -27,7 +26,6 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.credits = credits;
-		this.tempCredits = tempCredits;
 		this.userRole = userRole;
 	}
 

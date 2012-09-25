@@ -34,7 +34,7 @@ public class CreateAccount extends ActionSupport {
 
 	public String execute() {
 		user = new User(id, name, address, email, phonenumber, username,
-				password, credits, tempCredits, userRole);
+				password, credits, userRole);
 		ias.addUser(user);
 
 		return SUCCESS;
@@ -62,7 +62,7 @@ public class CreateAccount extends ActionSupport {
 			addFieldError("username", "Username already exists.");		// Check if username exists.
 		} 
 
-		// TODO Check if valid name (xxxxx xxxxx OR xxxxx xxxxx xxxxx).
+		// TODO Check if valid name (xxxxx xxxxx OR xxxxx xxxxx xxxxx & no numbers or weird characters).
 		if (name.length() == 0) {
 			addFieldError("name", "Name is required.");
 		}
