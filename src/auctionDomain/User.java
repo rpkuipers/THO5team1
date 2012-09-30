@@ -13,11 +13,12 @@ public class User {
 	private int credits;
 	private int tempCredits;
 	private int userRole;
+	private int points;
 	private ArrayList<Bid> userBids = new ArrayList<Bid>();
 	private ArrayList<Auction> userAuctions = new ArrayList<Auction>();
 
 	public User(int id, String name, String address, String email,
-			String phoneNumber, String username, String password, int credits, int userRole) {
+			String phoneNumber, String username, String password, int credits, int userRole, int points) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -27,6 +28,7 @@ public class User {
 		this.password = password;
 		this.credits = credits;
 		this.userRole = userRole;
+		this.points = points;
 	}
 
 	public ArrayList<Bid> getUserBids() {
@@ -123,6 +125,14 @@ public class User {
 
 	public void setUserRole(int userRole) {
 		this.userRole = userRole;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 }

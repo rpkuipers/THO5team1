@@ -36,7 +36,7 @@ public class Bid extends ActionSupport implements UserAware, SessionAware {
 			if(a.getTitle().equals(title)){
 				detailedAuction = a;
 				auctionUser = ias.getUserByUserId(detailedAuction.getUserid());
-				bids = detailedAuction.getBids();
+				setBids(detailedAuction.getBids());
 				foundAuction = true;
 			}
 		}
@@ -45,24 +45,31 @@ public class Bid extends ActionSupport implements UserAware, SessionAware {
 		System.out.println("Amount: " + amount);
 		System.out.println("User: " + user.getUsername());
 		if(foundAuction){
-			System.out.println("Bids size: " + bids.size());
-			System.out.println("Bids last value: " + bids.get(bids.size() - 1).getAmount());
-			if(bids.get(bids.size() - 1).getAmount() < getAmount()) {
-					bid = new auctionDomain.Bid(user.getUsername(), amount);
-					//bid.setAmount(amount);
-					System.out.println(amount);
-					//bid.setUsername(user.getUsername());
-					bids.add(bid);
-					bids = detailedAuction.getBids();
-					return SUCCESS;
+			System.out.println("Bids size: " + getBids().size());
+			System.out.println("Bids last value: " + getBids().get(getBids().size() - 1).getAmount());
+			if(getBids().size() > 0) {
+				if(getBids().get(0).getAmount() < getAmount()) {
+						bid = new auctionDomain.Bid(user.getUsername(), amount);
+						//bid.setAmount(amount);
+						System.out.println(amount);
+						//bid.setUsername(user.getUsername());
+						getBids().add(0,bid);
+						setBids(detailedAuction.getBids());
+						return SUCCESS;
+				} else {
+					addFieldError("wrongamount", "Amount must be higher than the current bid.");
+					setBids(detailedAuction.getBids());
+					return ActionSupport.INPUT;
+				}
 			} else {
-				addFieldError("wrongamount", "Amount must be higher than the current bid.");
-				bids = detailedAuction.getBids();
-				return ActionSupport.INPUT;
+				bid = new auctionDomain.Bid(user.getUsername(), amount);
+				bids.add(bid);
+				setBids(detailedAuction.getBids());
+				return SUCCESS;
 			}
 		} else {
 			addFieldError("noauction", "This auction is no longer available.");
-			bids = detailedAuction.getBids();
+			setBids(detailedAuction.getBids());
 			return ActionSupport.INPUT;
 		}
 	}
@@ -76,11 +83,11 @@ public class Bid extends ActionSupport implements UserAware, SessionAware {
 	}
 
 	public ArrayList<auctionDomain.Bid> getBidsArray() {
-		return bids;
+		return getBids();
 	}
 
 	public void setBidsArray(ArrayList<auctionDomain.Bid> bids) {
-		this.bids = bids;
+		this.setBids(bids);
 	}
 
 	public Auction getDetailedAuction() {
@@ -123,6 +130,14 @@ public class Bid extends ActionSupport implements UserAware, SessionAware {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+
+	public ArrayList<auctionDomain.Bid> getBids() {
+		return bids;
+	}
+
+	public void setBids(ArrayList<auctionDomain.Bid> bids) {
+		this.bids = bids;
 	}
 
 }

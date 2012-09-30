@@ -1,6 +1,6 @@
 package auctionDomain;
 
-public class Bid {
+public class Bid implements Comparable<Bid>{
 	private double amount;
 	private String username;
 
@@ -23,6 +23,19 @@ public class Bid {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	@Override
+	public int compareTo(Bid o) 
+	{
+		if(this.amount > o.amount)
+		{
+			return -1;
+		}
+		else 
+		{
+			return 1;
+		}
 	}
 
 }

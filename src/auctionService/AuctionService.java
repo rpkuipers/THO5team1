@@ -19,9 +19,9 @@ public class AuctionService implements IAuctionService, SessionAware {
 	private ArrayList<Auction> searchResult = new ArrayList<Auction>();
 	public Map session;
 	public AuctionService() {		
-		addUser(new User(1, "Pieter", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "Pietje92", "pieterpost92", 0, 100));
-		addUser(new User(2, "Pietertje Post", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "PPost", "ww", 0, 100));
-		addUser(new User(3, "admin", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "admin", "admin", 0, 200));
+		addUser(new User(1, "Pieter", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "Pietje92", "pieterpost92", 0, 100, 1));
+		addUser(new User(2, "Pietertje Post", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "PPost", "ww", 0, 100, 0));
+		addUser(new User(3, "admin", "Pieterlaan 1", "pietje@hotmail.com", "06336452836", "admin", "admin", 0, 200, 0));
 		
 		Bid b = new Bid("PPost", 210.0);
 		Bid b1 = new Bid("PPost", 220.0);
@@ -91,6 +91,16 @@ public class AuctionService implements IAuctionService, SessionAware {
 		}
 		return getSearchResult();								// SearchResult is temporarily being emptied in the AuthenticationInterceptor.
 	}															// TODO Make own Interceptor for SearchResult
+	
+	@Override
+	public Auction getAuctionByTitle(String title) {
+		for(Auction a : auctions){
+			if(a.getTitle().toLowerCase().contains(title.toLowerCase())){
+				return a;
+			}
+		}
+		return null;
+	}
 
 	@Override
 	public void setSession(Map session) {
@@ -107,6 +117,14 @@ public class AuctionService implements IAuctionService, SessionAware {
 
 	public void setBids(ArrayList<Bid> bids) {
 		this.bids = bids;
+	}
+
+	@Override
+	public void plusOne(String username) {
+		User user = getUserByUsername(username);
+		int points = user.getPoints();
+		points++;
+		user.setPoints(points);
 	}
 }
 

@@ -99,6 +99,10 @@
 			<result name="input">/jsp/member/AuctionDetails.jsp</result>
 		</action>
 		
+		<action name="PlusOne" class="auctionActions.member.PlusOne">
+			<result name="success">/jsp/member/AuctionDetails.jsp</result>
+		</action>
+		
 			
 	</package>
 </struts>

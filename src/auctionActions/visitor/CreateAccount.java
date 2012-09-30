@@ -24,6 +24,7 @@ public class CreateAccount extends ActionSupport {
 	private int credits = 0;
 	private int tempCredits = 0;
 	private int userRole = 100;
+	private int points = 0;
 	boolean hasUpperCase = false;
 	boolean hasLowerCase = false;
 	boolean hasDigit = false;
@@ -34,7 +35,7 @@ public class CreateAccount extends ActionSupport {
 
 	public String execute() {
 		user = new User(id, name, address, email, phonenumber, username,
-				password, credits, userRole);
+				password, credits, userRole, points);
 		ias.addUser(user);
 
 		return SUCCESS;
@@ -96,20 +97,24 @@ public class CreateAccount extends ActionSupport {
 			addFieldError("password", "Password is required.");
 		}
 		if (password.equals(repeatpassword)) {
-			if (!validPassword()) {
-				if (!hasUpperCase) {
-					addFieldError("passworduppercase",					// Password validation method (line 204)
-							"Password must contain at least 1 uppercase character.");
-				} else if (!hasLowerCase) {
-					addFieldError("passwordlowercase",
-							"Password must contain at least 1 lowercase character.");
-				} else if (!hasDigit) {
-					addFieldError("passworddigit",
-							"Password must contain at least 1 number.");
-				} else if (repeatpassword.length() < 8) {
-					addFieldError("passwordlength",
-							"Password length must be at least 8 characters.");
+			if(!password.equals(username)){
+				if (!validPassword()) {
+					if (!hasUpperCase) {
+						addFieldError("passworduppercase",					// Password validation method (line 204)
+								"Password must contain at least 1 uppercase character.");
+					} else if (!hasLowerCase) {
+						addFieldError("passwordlowercase",
+								"Password must contain at least 1 lowercase character.");
+					} else if (!hasDigit) {
+						addFieldError("passworddigit",
+								"Password must contain at least 1 number.");
+					} else if (repeatpassword.length() < 8) {
+						addFieldError("passwordlength",
+								"Password length must be at least 8 characters.");
+					}
 				}
+			} else {
+				addFieldError("passwordusername", "Password may not be the same as your username.");
 			}
 		} else {
 			addFieldError("passwordmatch", "Passwords must match.");
@@ -221,6 +226,14 @@ public class CreateAccount extends ActionSupport {
 		} else {
 			return false;														// If not, return false.
 		}
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 }
 
